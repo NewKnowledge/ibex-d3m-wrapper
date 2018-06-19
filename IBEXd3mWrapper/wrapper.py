@@ -65,7 +65,7 @@ class ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
         "installation": [
               {
                   "type": "PIP",
-                  "package_uri": "git+https://github.com/NewKnowledge/ibex.git@13e0f36cc3acb2a3f405f63a6cf1b398fc36bbee#egg=ibex"
+                  "package_uri": "git+https://github.com/ghonk/ibex.git@13e0f36cc3acb2a3f405f63a6cf1b398fc36bbee#egg=ibex"
               },
               {
                   "type": "PIP",
