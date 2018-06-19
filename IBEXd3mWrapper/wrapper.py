@@ -65,7 +65,7 @@ class ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
         "installation": [
               {
                   "type": "PIP",
-                  "package_uri": "git+https://github.com/ghonk/ibex.git@13e0f36cc3acb2a3f405f63a6cf1b398fc36bbee#egg=ibex"
+                  "package_uri": "git+https://github.com/NewKnowledge/ibex.git@1a7d49c2876d395167801b44dcd299332799bb7d#egg=ibex"
               },
               {
                   "type": "PIP",
@@ -141,9 +141,9 @@ class ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
 
 
 if __name__ == '__main__':
-    client = ibex(hyperparams={'target_columns': ['test_column'], 'output_labels': ['test_column_prefix']})
+    client = ibex(hyperparams={'target_columns': ['test_column'], 'output_labels': ['test_column_prefix_']})
 
-    text = ['Homeland security secretary claims administration is simply enforcing the law as photos and audio of children fuel anger']
+    text = ['The Trump administration struggled on Monday to defend its policy of separating parents from their sons and daughters at the southern US border amid growing national outrage and the release of of sobbing children.']
 
     input_df = pd.DataFrame(pd.Series([text, text]))
     input_df.columns = ['test_column']
