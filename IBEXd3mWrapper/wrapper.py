@@ -126,7 +126,7 @@ class ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
             output_label = output_labels[i]
 
             for doc in input_df.loc[:, ith_column]:
-                jth_result = get_entities()
+                jth_result = get_entities(doc)
 
                 result_df = result_df.append(
                     {
@@ -146,6 +146,6 @@ if __name__ == '__main__':
     text = ['Homeland security secretary claims administration is simply enforcing the law as photos and audio of children fuel anger']
 
     input_df = pd.DataFrame(pd.Series([text, text]))
-    imagepath_df.columns = ['test_column']
+    input_df.columns = ['test_column']
     result = client.produce(inputs=input_df)
     print(result.head)
