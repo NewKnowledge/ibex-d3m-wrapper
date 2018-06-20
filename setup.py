@@ -13,7 +13,7 @@ setup(
         'ibex >= 1.0.0'
     ],
     dependency_links=[
-        "git+https://github.com/NewKnowledge/ibex@60fbe980cf0a8462a5b4892fd239978c9d77adaa#egg=ibex-1.0.0"
+        "git+https://github.com/NewKnowledge/ibex@455d33e4434d9e75b0d86f43ac9c3d9de2a1ce61#egg=ibex-1.0.0"
     ],
     entry_points={
         'd3m.primitives': [
