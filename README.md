@@ -14,4 +14,4 @@ A dataframe with objects, text and tokens, corresponding to the detected objects
 ## Available Functions
 
 #### produce
-Produce primitive's best guess for the structural type of each input column. The input is a pandas dataframe. The output is a dataframe with objects, text and tokens, corresponding to the detected objects, raw text and tokens predicted to be in the supplied images.
+Produce image object classification predictions and OCR for an image provided as an URI or filepath The input is a pandas dataframe. The output is described above.
