@@ -30,7 +30,7 @@ class Hyperparams(hyperparams.Hyperparams):
         max_size=sys.maxsize,
         min_size=0,
         semantic_types=['https://metadata.datadrivendiscovery.org/types/ControlParameter'],
-        description='names of columns with image paths'
+        description='names of columns with input text values'
     )
 
     output_labels = hyperparams.Set(
@@ -39,11 +39,26 @@ class Hyperparams(hyperparams.Hyperparams):
         max_size=sys.maxsize,
         min_size=0,
         semantic_types=['https://metadata.datadrivendiscovery.org/types/ControlParameter'],
-        description='desired names for croc output columns'
+        description='names of columns with output sets of named entities'
     )
 
 
 class ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
+    """
+    This D3M wrapper invokes the d3m_ibex primitive, which calls the spaCy named entity recognition tool 
+    (https://spacy.io/usage/linguistic-features). Given a set of input text documents, the wrapper will 
+    return a list of the named entities detected. A key weakness of spaCy's NER is that it might not 
+    recognize proper nouns that are not properly capitalized.
+
+    Parameters
+    ----------
+    inputs : pandas dataframe where a column is a pd.Series of text documents
+
+    Returns
+    -------
+    output : A dataframe with the sets of named entities extracted from the columns of the input dataframe.
+
+    """
     metadata = metadata_base.PrimitiveMetadata({
         # Simply an UUID generated once and fixed forever. Generated using "uuid.uuid4()".
         'id': 'd822d93e-60fa-4634-983b-99a3ad852999',
@@ -65,7 +80,7 @@ class ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
         "installation": [
               {
                   "type": "PIP",
-                  "package_uri": "git+https://github.com/NewKnowledge/ibex.git@94966aaf48733b8422c2844c1319a859e85d8c67#egg=ibex"
+                  "package_uri": "git+https://github.com/NewKnowledge/d3m_ibex@7519b2a0ae7220fc04aa616cd65c4592d3ea8b2f#egg=d3m_ibex-1.0.0"
               },
               {
                   "type": "PIP",
@@ -75,13 +90,13 @@ class ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
               }
         ],
         # The same path the primitive is registered with entry points in setup.py.
-        'python_path': 'd3m.primitives.distil.ibex',
+        'python_path': 'd3m.primitives.feature_extraction.ibex.Ibex',
         # Choose these from a controlled vocabulary in the schema. If anything is missing which would
         # best describe the primitive, make a merge request.
         "algorithm_types": [
             metadata_base.PrimitiveAlgorithmType.DATA_CONVERSION
             ],
-        "primitive_family": metadata_base.PrimitiveFamily.DATA_TRANSFORMATION
+        'primitive_family': metadata_base.PrimitiveFamily.FEATURE_EXTRACTION,
     })
 
     def __init__(self, *, hyperparams: Hyperparams)-> None:
@@ -101,18 +116,15 @@ class ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
 
     def produce(self, *, inputs: Inputs) -> CallResult[Outputs]:
         """
-            Produce image object classification predictions and OCR for an
-            image provided as an URI or filepath
 
         Parameters
         ----------
-        inputs : pandas dataframe where a column is a pd.Series of image paths/URLs
+        inputs : pandas dataframe where a column is a pd.Series of text documents
 
         Returns
         -------
-        output : A dataframe with objects, text and tokens, corresponding to the
-            detected objects, raw text and tokens predicted to be in the 
-            supplied images.
+        output : A dataframe with the sets of named entities extracted from the columns of the input dataframe.
+
         """
 
         target_columns = self.hyperparams['target_columns']

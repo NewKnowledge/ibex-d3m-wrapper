@@ -8,10 +8,13 @@ This service is a wrapper for the spaCy named entity recognition tool. Given a t
 
 pip3 install -e git+https://github.com/NewKnowledge/ibex-d3m-wrapper.git#egg=IBEXd3mWrapper --process-dependency-links
 
+## Input
+A pandas dataframe where a column is a pd.Series of text documents.
+
 ## Output
-A dataframe with objects, text and tokens, corresponding to the detected objects, raw text and tokens predicted to be in the supplied images.
+A dataframe with the sets of named entities extracted from the columns of the input dataframe.
 
 ## Available Functions
 
 #### produce
-Produce image object classification predictions and OCR for an image provided as an URI or filepath The input is a pandas dataframe. The output is described above.
+Perform named entity recognition based on the input data provided. The output is described above.
