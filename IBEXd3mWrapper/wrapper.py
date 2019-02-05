@@ -5,7 +5,7 @@ from json import loads
 import numpy as np
 import pandas as pd
 
-from ibex import *
+from d3m_ibex import *
 
 from d3m.primitive_interfaces.base import PrimitiveBase, CallResult
 
@@ -80,7 +80,7 @@ class ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
         "installation": [
               {
                   "type": "PIP",
-                  "package_uri": "git+https://github.com/NewKnowledge/d3m_ibex@7519b2a0ae7220fc04aa616cd65c4592d3ea8b2f#egg=d3m_ibex-1.0.0"
+                  "package_uri": "git+https://github.com/NewKnowledge/d3m_ibex@90323d9e6cf9d17e2f3c1f83298475de723ffa7e#egg=d3m_ibex-1.0.0"
               },
               {
                   "type": "PIP",
