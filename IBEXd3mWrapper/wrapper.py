@@ -43,7 +43,7 @@ class Hyperparams(hyperparams.Hyperparams):
     )
 
 
-class ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
+class d3m_ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
     """
     This D3M wrapper invokes the d3m_ibex primitive, which calls the spaCy named entity recognition tool 
     (https://spacy.io/usage/linguistic-features). Given a set of input text documents, the wrapper will 
@@ -80,7 +80,7 @@ class ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
         "installation": [
               {
                   "type": "PIP",
-                  "package_uri": "git+https://github.com/NewKnowledge/d3m_ibex@90323d9e6cf9d17e2f3c1f83298475de723ffa7e#egg=d3m_ibex-1.0.0"
+                  "package_uri": "git+https://github.com/NewKnowledge/d3m_ibex@78223b04b8afce2e39a47fbd075e226bc9d91ad9#egg=d3m_ibex-1.1.0"
               },
               {
                   "type": "PIP",
@@ -153,7 +153,7 @@ class ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
 
 
 if __name__ == '__main__':
-    client = ibex(hyperparams={'target_columns': ['test_column'], 'output_labels': ['test_column_prefix_']})
+    client = d3m_ibex(hyperparams={'target_columns': ['test_column'], 'output_labels': ['test_column_prefix_']})
 
     text = ['The Trump administration struggled on Monday to defend its policy of separating parents from their sons and daughters at the southern US border amid growing national outrage and the release of of sobbing children.']
 
