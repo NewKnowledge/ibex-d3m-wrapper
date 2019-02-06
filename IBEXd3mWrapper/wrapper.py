@@ -14,6 +14,7 @@ from d3m.metadata import hyperparams, base as metadata_base, params
 
 __author__ = 'Distil'
 __version__ = '1.1.0'
+__contact__ = 'mailto:nklabs@newknowledge.io'
 
 Inputs = container.pandas.DataFrame
 Outputs = container.pandas.DataFrame
@@ -68,6 +69,7 @@ class d3m_Ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
         'keywords': ['entity extraction'],
         'source': {
             'name': __author__,
+            'contact': __contact__,
             'uris': [
                 # Unstructured URIs.
                 "https://github.com/NewKnowledge/ibex-d3m-wrapper",
@@ -126,7 +128,7 @@ class d3m_Ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
         output : A dataframe with the sets of named entities extracted from the columns of the input dataframe.
 
         """
-
+        client = Ibex()
         target_columns = self.hyperparams['target_columns']
         output_labels = self.hyperparams['output_labels']
 
@@ -138,7 +140,7 @@ class d3m_Ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
             output_label = output_labels[i]
 
             for doc in input_df.loc[:, ith_column]:
-                jth_result = Ibex.get_entities(doc)
+                jth_result = client.get_entities(doc)
 
                 result_df = result_df.append(
                     {
