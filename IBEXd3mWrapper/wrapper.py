@@ -82,7 +82,7 @@ class d3m_Ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
         "installation": [
               {
                   "type": "PIP",
-                  "package_uri": "git+https://github.com/NewKnowledge/d3m_ibex@5c7f3718153359e107653e7fb5e5bd32d13e6c95#egg=d3m_ibex-1.1.0"
+                  "package_uri": "git+https://github.com/NewKnowledge/d3m_ibex@34913e494d917db3e6fbab996cad3aa6622c5298#egg=d3m_ibex-1.1.0"
               },
               {
                   "type": "PIP",
@@ -157,9 +157,10 @@ class d3m_Ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
 if __name__ == '__main__':
     client = d3m_Ibex(hyperparams={'target_columns': ['test_column'], 'output_labels': ['test_column_prefix_']})
 
-    text = ['The Trump administration struggled on Monday to defend its policy of separating parents from their sons and daughters at the southern US border amid growing national outrage and the release of of sobbing children.']
+    text = 'The Trump administration struggled on Monday to defend its policy of separating parents from their sons and daughters at the southern US border amid growing national outrage and the release of of sobbing children.'
 
     input_df = pd.DataFrame(pd.Series([text, text]))
     input_df.columns = ['test_column']
     result = client.produce(inputs=input_df)
     print(result.head)
+    result.to_csv('d3m_Ibex_output.txt', sep='\t', encoding='utf-8', index=False)
