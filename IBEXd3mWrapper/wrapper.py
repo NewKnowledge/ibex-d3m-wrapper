@@ -5,7 +5,7 @@ from json import loads
 import numpy as np
 import pandas as pd
 
-from d3m_ibex import *
+from d3m_ibex import Ibex
 
 from d3m.primitive_interfaces.base import PrimitiveBase, CallResult
 
@@ -13,7 +13,7 @@ from d3m import container, utils
 from d3m.metadata import hyperparams, base as metadata_base, params
 
 __author__ = 'Distil'
-__version__ = '1.0.0'
+__version__ = '1.1.0'
 
 Inputs = container.pandas.DataFrame
 Outputs = container.pandas.DataFrame
@@ -43,7 +43,7 @@ class Hyperparams(hyperparams.Hyperparams):
     )
 
 
-class d3m_ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
+class d3m_Ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
     """
     This D3M wrapper invokes the d3m_ibex primitive, which calls the spaCy named entity recognition tool 
     (https://spacy.io/usage/linguistic-features). Given a set of input text documents, the wrapper will 
@@ -80,7 +80,7 @@ class d3m_ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
         "installation": [
               {
                   "type": "PIP",
-                  "package_uri": "git+https://github.com/NewKnowledge/d3m_ibex@78223b04b8afce2e39a47fbd075e226bc9d91ad9#egg=d3m_ibex-1.1.0"
+                  "package_uri": "git+https://github.com/NewKnowledge/d3m_ibex@5c7f3718153359e107653e7fb5e5bd32d13e6c95=d3m_ibex-1.1.0"
               },
               {
                   "type": "PIP",
@@ -138,7 +138,7 @@ class d3m_ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
             output_label = output_labels[i]
 
             for doc in input_df.loc[:, ith_column]:
-                jth_result = get_entities(doc)
+                jth_result = Ibex.get_entities(doc)
 
                 result_df = result_df.append(
                     {
@@ -153,7 +153,7 @@ class d3m_ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
 
 
 if __name__ == '__main__':
-    client = d3m_ibex(hyperparams={'target_columns': ['test_column'], 'output_labels': ['test_column_prefix_']})
+    client = d3m_Ibex(hyperparams={'target_columns': ['test_column'], 'output_labels': ['test_column_prefix_']})
 
     text = ['The Trump administration struggled on Monday to defend its policy of separating parents from their sons and daughters at the southern US border amid growing national outrage and the release of of sobbing children.']
 

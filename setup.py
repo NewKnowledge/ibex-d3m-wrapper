@@ -14,11 +14,11 @@ setup(
         'd3m_ibex >= 1.1.0'
     ],
     dependency_links=[
-        "git+https://github.com/NewKnowledge/d3m_ibex@978223b04b8afce2e39a47fbd075e226bc9d91ad9#egg=d3m_ibex-1.1.0"
+        "git+https://github.com/NewKnowledge/d3m_ibex@5c7f3718153359e107653e7fb5e5bd32d13e6c95#egg=d3m_ibex-1.1.0"
     ],
     entry_points={
         'd3m.primitives': [
-            'feature_extraction.ibex.Ibex = IBEXd3mWrapper:d3m_ibex'
+            'feature_extraction.ibex.Ibex = IBEXd3mWrapper:d3m_Ibex'
         ],
     }
 )
