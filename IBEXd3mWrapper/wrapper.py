@@ -80,7 +80,7 @@ class d3m_Ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
         "installation": [
               {
                   "type": "PIP",
-                  "package_uri": "git+https://github.com/NewKnowledge/d3m_ibex@5c7f3718153359e107653e7fb5e5bd32d13e6c95=d3m_ibex-1.1.0"
+                  "package_uri": "git+https://github.com/NewKnowledge/d3m_ibex@5c7f3718153359e107653e7fb5e5bd32d13e6c95#egg=d3m_ibex-1.1.0"
               },
               {
                   "type": "PIP",
