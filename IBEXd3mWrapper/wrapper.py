@@ -170,9 +170,11 @@ class d3m_Ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
 
 
 if __name__ == '__main__':
+    volumes = {} 
+    volumes["english_spacy_parser"] = '/tmp/f54a6e6a2ff34c1adb1a2eabeb67b170933453ed878125c76813dc2e31c8cf8a/en_core_web_md-2.1.0a7.tar.gz'
+    volumes["spanish_spacy_parser"] = '/tmp/06d827f4822d06308b2a8d66d5ac526dec521d041826405cd5ade0f4d587b656/es_core_news_md-2.1.0a7.tar.gz'
     client = d3m_Ibex(hyperparams={'target_columns': ['test_column'], 'output_labels': ['test_column_prefix_']}, \
-        volumes = ['/tmp/f54a6e6a2ff34c1adb1a2eabeb67b170933453ed878125c76813dc2e31c8cf8a/en_core_web_md-2.1.0a7.tar.gz', \
-            '/tmp/06d827f4822d06308b2a8d66d5ac526dec521d041826405cd5ade0f4d587b656/es_core_news_md-2.1.0a7.tar.gz'])
+        volumes = volumes)
 
     text = 'The Trump administration struggled on Monday to defend its policy of separating parents from their sons and daughters at the southern US border amid growing national outrage and the release of of sobbing children.'
 
