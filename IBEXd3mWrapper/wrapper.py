@@ -82,14 +82,26 @@ class d3m_Ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
         "installation": [
               {
                   "type": "PIP",
-                  "package_uri": "git+https://github.com/NewKnowledge/d3m_ibex@34913e494d917db3e6fbab996cad3aa6622c5298#egg=d3m_ibex-1.1.0"
+                  "package_uri": "git+https://github.com/NewKnowledge/d3m_ibex@d3ebf0da3d5603231eb81d252cc9c8ae98d280cb#egg=d3m_ibex-1.1.0"
               },
               {
                   "type": "PIP",
                   "package_uri": "git+https://github.com/NewKnowledge/ibex-d3m-wrapper.git@{git_commit}#egg=IBEXd3mWrapper".format(
                         git_commit=utils.current_git_commit(os.path.dirname(__file__))
                         ),
-              }
+              },
+              {
+                "type": "TGZ",
+                "key": "english_spacy_parser",
+                "file_uri": "http://public.datadrivendiscovery.org/en_core_web_md-2.1.0a7.tar.gz",
+                "file_digest":"f54a6e6a2ff34c1adb1a2eabeb67b170933453ed878125c76813dc2e31c8cf8a"
+              }, 
+              {
+                "type": "TGZ",
+                "key": "spanish_spacy_parser",
+                "file_uri": "http://public.datadrivendiscovery.org/es_core_news_md-2.1.0a7.tar.gz",
+                "file_digest":"06d827f4822d06308b2a8d66d5ac526dec521d041826405cd5ade0f4d587b656"
+              }, 
         ],
         # The same path the primitive is registered with entry points in setup.py.
         'python_path': 'd3m.primitives.feature_extraction.ibex.Ibex',
@@ -101,8 +113,9 @@ class d3m_Ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
         'primitive_family': metadata_base.PrimitiveFamily.FEATURE_EXTRACTION,
     })
 
-    def __init__(self, *, hyperparams: Hyperparams)-> None:
-        super().__init__(hyperparams=hyperparams)
+    def __init__(self, *, hyperparams: Hyperparams, volumes: typing.Dict[str,str]=None)-> None:
+        super().__init__(hyperparams=hyperparams, volumes=volumes)
+        self.volumes = volumes
 
     def fit(self) -> None:
         pass
@@ -128,7 +141,9 @@ class d3m_Ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
         output : A dataframe with the sets of named entities extracted from the columns of the input dataframe.
 
         """
-        client = Ibex()
+        #client = Ibex()
+        client = Ibex(parser_installation_files=[self.volumes["english_spacy_parser"], \
+            self.volumes["spanish_spacy_parser"]])
         target_columns = self.hyperparams['target_columns']
         output_labels = self.hyperparams['output_labels']
 
@@ -155,7 +170,9 @@ class d3m_Ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
 
 
 if __name__ == '__main__':
-    client = d3m_Ibex(hyperparams={'target_columns': ['test_column'], 'output_labels': ['test_column_prefix_']})
+    client = d3m_Ibex(hyperparams={'target_columns': ['test_column'], 'output_labels': ['test_column_prefix_']}, \
+        volumes = ['/tmp/f54a6e6a2ff34c1adb1a2eabeb67b170933453ed878125c76813dc2e31c8cf8a/en_core_web_md-2.1.0a7.tar.gz', \
+            '/tmp/06d827f4822d06308b2a8d66d5ac526dec521d041826405cd5ade0f4d587b656/es_core_news_md-2.1.0a7.tar.gz'])
 
     text = 'The Trump administration struggled on Monday to defend its policy of separating parents from their sons and daughters at the southern US border amid growing national outrage and the release of of sobbing children.'
 
