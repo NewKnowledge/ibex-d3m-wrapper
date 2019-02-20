@@ -151,7 +151,7 @@ class d3m_Ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
 
         """
         #client = Ibex()
-        if self.volumes['language'] == 'spanish':
+        if self.hyperparams['language'] == 'spanish':
             parser_installation_file = self.volumes["spanish_spacy_parser"]
         else:   
             parser_installation_file = self.volumes["english_spacy_parser"]
