@@ -33,7 +33,11 @@ class Hyperparams(hyperparams.Hyperparams):
         semantic_types=['https://metadata.datadrivendiscovery.org/types/ControlParameter'],
         description='names of columns with input text values'
     )
-
+    language = hyperparams.Enumeration(default = 'english', 
+        semantic_types = ['https://metadata.datadrivendiscovery.org/types/ControlParameter'],
+        values = ['english','spanish'],
+        description = 'language to use for the spacy model')
+    
     output_labels = hyperparams.Set(
         elements=hyperparams.Hyperparameter[str](''),
         default=(),
@@ -54,6 +58,11 @@ class d3m_Ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
     Parameters
     ----------
     inputs : pandas dataframe where a column is a pd.Series of text documents
+
+    hyperparams:
+        target_columns: names of columns with input text values
+        output_labels: names of columns with output sets of named entities
+        language: language to use for the spacy model ('english' or 'spanish')
 
     Returns
     -------
@@ -82,7 +91,7 @@ class d3m_Ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
         "installation": [
               {
                   "type": "PIP",
-                  "package_uri": "git+https://github.com/NewKnowledge/d3m_ibex@d3ebf0da3d5603231eb81d252cc9c8ae98d280cb#egg=d3m_ibex-1.1.0"
+                  "package_uri": "git+https://github.com/NewKnowledge/d3m_ibex@96d5122d771a4506454f50106b400984977b894b#egg=d3m_ibex-1.1.1"
               },
               {
                   "type": "PIP",
@@ -142,8 +151,11 @@ class d3m_Ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
 
         """
         #client = Ibex()
-        client = Ibex(parser_installation_files=[self.volumes["english_spacy_parser"], \
-            self.volumes["spanish_spacy_parser"]])
+        if self.volumes['language'] == 'spanish':
+            parser_installation_file = self.volumes["spanish_spacy_parser"]
+        else:   
+            parser_installation_file = self.volumes["english_spacy_parser"]
+        client = Ibex(parser_installation_file=parser_installation_file)
         target_columns = self.hyperparams['target_columns']
         output_labels = self.hyperparams['output_labels']
 
@@ -173,7 +185,7 @@ if __name__ == '__main__':
     volumes = {} 
     volumes["english_spacy_parser"] = '/tmp/f54a6e6a2ff34c1adb1a2eabeb67b170933453ed878125c76813dc2e31c8cf8a/en_core_web_md-2.1.0a7.tar.gz'
     volumes["spanish_spacy_parser"] = '/tmp/06d827f4822d06308b2a8d66d5ac526dec521d041826405cd5ade0f4d587b656/es_core_news_md-2.1.0a7.tar.gz'
-    client = d3m_Ibex(hyperparams={'target_columns': ['test_column'], 'output_labels': ['test_column_prefix_']}, \
+    client = d3m_Ibex(hyperparams={'target_columns': ['test_column'], 'output_labels': ['test_column_prefix_'], 'language' : 'english'}, \
         volumes = volumes)
 
     text = 'The Trump administration struggled on Monday to defend its policy of separating parents from their sons and daughters at the southern US border amid growing national outrage and the release of of sobbing children.'
