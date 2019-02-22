@@ -4,6 +4,8 @@ import typing
 from json import loads
 import numpy as np
 import pandas as pd
+import traceback
+import logging
 
 from d3m_ibex import Ibex
 
@@ -89,10 +91,6 @@ class d3m_Ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
         # install a Python package first to be even able to run setup.py of another package. Or you have
         # a dependency which is not on PyPi.
         "installation": [
-              {
-                  "type": "PIP",
-                  "package_uri": "git+https://github.com/NewKnowledge/d3m_ibex@96d5122d771a4506454f50106b400984977b894b#egg=d3m_ibex-1.1.1"
-              },
               {
                   "type": "PIP",
                   "package_uri": "git+https://github.com/NewKnowledge/ibex-d3m-wrapper.git@{git_commit}#egg=IBEXd3mWrapper".format(
