@@ -10,7 +10,7 @@ setup(
     install_requires=[
         'pandas >= 0.22.0, < 0.23.0',
         'numpy >= 1.13.3',
-        'spacy>=2.0.12',
+        'spacy==2.0.12',
         'd3m_ibex >= 1.1.1'
     ],
     dependency_links=[
