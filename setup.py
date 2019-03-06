@@ -8,7 +8,7 @@ setup(
     packages=['IBEXd3mWrapper'],
     keywords=['d3m_primitive'],
     install_requires=[
-        'pandas >= 0.22.0, < 0.23.0',
+        'pandas ==0.23.4',
         'numpy >= 1.13.3',
         'spacy==2.0.12',
         'd3m_ibex >= 1.1.1'
