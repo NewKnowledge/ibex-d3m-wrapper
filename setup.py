@@ -11,10 +11,10 @@ setup(
         'pandas ==0.23.4',
         'numpy >= 1.13.3',
         'spacy==2.0.11',
-        'd3m_ibex >= 1.1.1'
+        'd3m_ibex >= 1.1.2'
     ],
     dependency_links=[
-        "git+https://github.com/NewKnowledge/d3m_ibex@eb7ee4fb2cb974c35b6b47f71a739a7ad17cf14c#egg=d3m_ibex-1.1.1"
+        "git+https://github.com/NewKnowledge/d3m_ibex@170704fdd4d7997134c904b70f95dbc4285e1f94#egg=d3m_ibex-1.1.2"
     ],
     entry_points={
         'd3m.primitives': [
