@@ -21,6 +21,8 @@ __contact__ = 'mailto:nklabs@newknowledge.io'
 Inputs = container.pandas.DataFrame
 Outputs = container.pandas.DataFrame
 
+logger = logging.getLogger('ibex_d3m_wrapper')
+logger.setLevel(logging.DEBUG)
 
 class Params(params.Params):
     pass
@@ -145,11 +147,11 @@ class d3m_Ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
 
         """
         #client = Ibex()
-        if self.hyperparams['language'] == 'spanish':
-            parser_installation_file = self.volumes["spanish_spacy_parser"]
+        if self.hyperparams['language']:
+            language = self.hyperparams['language']
         else:   
-            parser_installation_file = self.volumes["english_spacy_parser"]
-        client = Ibex(parser_installation_file=parser_installation_file)
+            language = "english"
+        client = Ibex(language = language)
         target_columns = self.hyperparams['target_columns']
         output_labels = self.hyperparams['output_labels']
 
@@ -183,5 +185,5 @@ if __name__ == '__main__':
     input_df = pd.DataFrame(pd.Series([text, text]))
     input_df.columns = ['test_column']
     result = client.produce(inputs=input_df)
-    print(result.head)
-    result.to_csv('d3m_Ibex_output.txt', sep='\t', encoding='utf-8', index=False)
+    logger.info(result.head)
+    #result.to_csv('d3m_Ibex_output.txt', sep='\t', encoding='utf-8', index=False)
