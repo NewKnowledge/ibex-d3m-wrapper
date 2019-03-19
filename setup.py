@@ -11,6 +11,9 @@ setup(
         'pandas ==0.23.4',
         'numpy >= 1.13.3',
         'spacy==2.0.11',
+        'thinc<6.11.0',
+        'preshed<2.0.0',
+        'cymem<1.32',
         'd3m_ibex >= 1.1.2'
     ],
     dependency_links=[
