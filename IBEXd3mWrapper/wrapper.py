@@ -95,17 +95,17 @@ class d3m_Ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
         "installation": [
             {
                 "type": "PIP",
-                "package_uri": "git+https://github.com/NewKnowledge/ibex-d3m-wrapper.git@{git_commit}#egg=IBEXd3mWrapper".format(
-                    git_commit=utils.current_git_commit(os.path.dirname(__file__))
-                    ),
-            },
-            {
-                "type": "PIP",
                 "package_uri": "http://public.datadrivendiscovery.org/en_core_web_md-2.1.0a7.tar.gz"
             },
             {
                 "type": "PIP",
                 "package_uri": "http://public.datadrivendiscovery.org/es_core_news_md-2.1.0a7.tar.gz"
+            },
+            {
+                "type": "PIP",
+                "package_uri": "git+https://github.com/NewKnowledge/ibex-d3m-wrapper.git@{git_commit}#egg=IBEXd3mWrapper".format(
+                    git_commit=utils.current_git_commit(os.path.dirname(__file__))
+                    ),
             },
         ],
         # The same path the primitive is registered with entry points in setup.py.
