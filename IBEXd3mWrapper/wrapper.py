@@ -15,7 +15,7 @@ from d3m import container, utils
 from d3m.metadata import hyperparams, base as metadata_base, params
 
 __author__ = 'Distil'
-__version__ = '1.1.0'
+__version__ = '1.0.1'
 __contact__ = 'mailto:nklabs@newknowledge.io'
 
 Inputs = container.pandas.DataFrame
@@ -91,33 +91,29 @@ class d3m_Ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
         # install a Python package first to be even able to run setup.py of another package. Or you have
         # a dependency which is not on PyPi.
         "installation": [
-              {
-                  "type": "PIP",
-                  "package_uri": "git+https://github.com/NewKnowledge/ibex-d3m-wrapper.git@{git_commit}#egg=IBEXd3mWrapper".format(
-                        git_commit=utils.current_git_commit(os.path.dirname(__file__))
-                        ),
-              },
-              {
-                "type": "TGZ",
-                "key": "english_spacy_parser",
-                "file_uri": "http://public.datadrivendiscovery.org/en_core_web_md-2.1.0a7.tar.gz",
-                "file_digest":"f54a6e6a2ff34c1adb1a2eabeb67b170933453ed878125c76813dc2e31c8cf8a"
-              }, 
-              {
-                "type": "TGZ",
-                "key": "spanish_spacy_parser",
-                "file_uri": "http://public.datadrivendiscovery.org/es_core_news_md-2.1.0a7.tar.gz",
-                "file_digest":"06d827f4822d06308b2a8d66d5ac526dec521d041826405cd5ade0f4d587b656"
-              }, 
+            {
+                "type": "PIP",
+                "package_uri": "git+https://github.com/NewKnowledge/ibex-d3m-wrapper.git@{git_commit}#egg=IBEXd3mWrapper".format(
+                    git_commit=utils.current_git_commit(os.path.dirname(__file__))
+                    ),
+            },
+            {
+                "type": "PIP",
+                "package_uri": "http://public.datadrivendiscovery.org/en_core_web_md-2.1.0a7.tar.gz"
+            },
+            {
+                "type": "PIP",
+                "package_uri": "http://public.datadrivendiscovery.org/es_core_news_md-2.1.0a7.tar.gz"
+            },
         ],
         # The same path the primitive is registered with entry points in setup.py.
-        'python_path': 'd3m.primitives.feature_extraction.ibex.Ibex',
+        'python_path': 'd3m.primitives.data_cleaning.ibex.Ibex',
         # Choose these from a controlled vocabulary in the schema. If anything is missing which would
         # best describe the primitive, make a merge request.
         "algorithm_types": [
             metadata_base.PrimitiveAlgorithmType.DATA_CONVERSION
             ],
-        'primitive_family': metadata_base.PrimitiveFamily.FEATURE_EXTRACTION,
+        'primitive_family': metadata_base.PrimitiveFamily.DATA_CLEANING,
     })
 
     def __init__(self, *, hyperparams: Hyperparams, volumes: typing.Dict[str,str]=None)-> None:
