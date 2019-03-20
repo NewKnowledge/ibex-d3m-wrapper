@@ -103,7 +103,8 @@ class d3m_Ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
             },
             {
                 "type": "PIP",
-                "package_uri": "thinc==6.10.3"
+                "package": "thinc",
+                "version": "6.10.3"
             },
             {
                 "type": "PIP",
