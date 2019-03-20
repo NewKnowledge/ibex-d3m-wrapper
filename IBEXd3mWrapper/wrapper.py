@@ -103,6 +103,10 @@ class d3m_Ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
             },
             {
                 "type": "PIP",
+                "package_uri": "thinc==6.10.3"
+            },
+            {
+                "type": "PIP",
                 "package_uri": "git+https://github.com/NewKnowledge/ibex-d3m-wrapper.git@{git_commit}#egg=IBEXd3mWrapper".format(
                     git_commit=utils.current_git_commit(os.path.dirname(__file__))
                     ),
