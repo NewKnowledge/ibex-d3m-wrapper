@@ -95,11 +95,7 @@ class d3m_Ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
         "installation": [
             {
                 "type": "PIP",
-                "package_uri": "http://public.datadrivendiscovery.org/en_core_web_md-2.1.0a7.tar.gz"
-            },
-            {
-                "type": "PIP",
-                "package_uri": "http://public.datadrivendiscovery.org/es_core_news_md-2.1.0a7.tar.gz"
+                "package_uri": "https://github.com/explosion/spacy-models/releases/download/en_core_web_md-1.2.0/en_core_web_md-1.2.0.tar.gz"
             },
             {
                 "type": "PIP",
@@ -114,7 +110,7 @@ class d3m_Ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
             {
                 "type": "PIP",
                 "package": "spacy",
-                "version": "2.0.11"
+                "version": "1.7.0"
             },
             {
                 "type": "PIP",
