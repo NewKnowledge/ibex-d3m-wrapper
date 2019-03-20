@@ -108,6 +108,16 @@ class d3m_Ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
             },
             {
                 "type": "PIP",
+                "package": "scipy",
+                "version": "1.1.0"
+            },
+            {
+                "type": "PIP",
+                "package": "spacy",
+                "version": "2.0.11"
+            },
+            {
+                "type": "PIP",
                 "package_uri": "git+https://github.com/NewKnowledge/ibex-d3m-wrapper.git@{git_commit}#egg=IBEXd3mWrapper".format(
                     git_commit=utils.current_git_commit(os.path.dirname(__file__))
                     ),
