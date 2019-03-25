@@ -95,22 +95,16 @@ class d3m_Ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
         "installation": [
             {
                 "type": "PIP",
-                "package_uri": "https://github.com/explosion/spacy-models/releases/download/en_core_web_md-1.2.0/en_core_web_md-1.2.0.tar.gz"
+                "package_uri": "https://github.com/explosion/spacy-models/releases/download/en_core_web_md-2.1.0/en_core_web_md-2.1.0.tar.gz"
             },
             {
                 "type": "PIP",
-                "package": "thinc",
-                "version": "6.10.3"
-            },
-            {
-                "type": "PIP",
-                "package": "scipy",
-                "version": "1.1.0"
+                "package_uri": "https://github.com/explosion/spacy-models/releases/download/es_core_news_md-2.1.0/es_core_news_md-2.1.0.tar.gz"
             },
             {
                 "type": "PIP",
                 "package": "spacy",
-                "version": "1.7.0"
+                "version": "spacy==2.1.0"
             },
             {
                 "type": "PIP",
