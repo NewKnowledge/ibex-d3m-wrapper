@@ -104,7 +104,7 @@ class d3m_Ibex(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
             {
                 "type": "PIP",
                 "package": "spacy",
-                "version": "spacy==2.1.0"
+                "version": "2.1.0"
             },
             {
                 "type": "PIP",
