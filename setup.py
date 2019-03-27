@@ -3,7 +3,7 @@ from distutils.core import setup
 
 setup(
     name='IBEXd3mWrapper',
-    version='1.0.1',
+    version='1.0.2',
     description='Intelligence based entity Xtraction primitive.',
     packages=['IBEXd3mWrapper'],
     keywords=['d3m_primitive'],
@@ -14,7 +14,7 @@ setup(
         'd3m_ibex>=1.1.3'
     ],
     dependency_links=[
-        "git+https://github.com/NewKnowledge/d3m_ibex@4086ca1d94c0bd78a4b9aa80b669a050077c3438#egg=d3m_ibex-1.1.3"
+        "git+https://github.com/NewKnowledge/d3m_ibex@bdcfdf1669fd356fa30d9512d62bfd8c482b80d0#egg=d3m_ibex-1.1.3"
     ],
     entry_points={
         'd3m.primitives': [
